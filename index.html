@@ -1,31 +1,56 @@
+
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-<meta charset='UTF-8'>
+<meta charset="UTF-8">
 <title>Developer Cheatsheet Hub</title>
-<link rel='stylesheet' href='style.css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<style>
+  body {font-family: Arial, sans-serif; margin: 2rem; background:#111; color:#eee;}
+  a {color:#ff6b6b;}
+  .dark-toggle {position:fixed; top:1rem; right:1rem; cursor:pointer;}
+  .container {max-width:800px; margin:auto;}
+  h1 {color:#ff4757;}
+</style>
 </head>
 <body>
-<header>
-<h1>Developer Cheatsheets</h1>
-<a href='https://buymeacoffee.com/rahulwork247' target='_blank'>
-<img src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png' alt='Buy Me A Coffee' style='height:40px;'>
-</a>
-</header>
-<main>
-<section>
-<h2>Docker Compose Cheat Sheet</h2>
-<pre><code>version: '3'
-services:
-  web:
-    image: nginx
-    ports:
-      - "80:80"
-</code></pre>
-</section>
-<section>
-<h2>Linux systemd Service Example</h2>
-<pre><code>[Unit]
+<div class="dark-toggle" onclick="document.body.classList.toggle('dark')">🌓</div>
+<div class="container">
+<h1>Developer Cheatsheet Hub</h1>
+<p>Welcome! Below are quick reference sections. Click a heading to expand.</p>
+
+<h2 onclick="toggle('docker')" style="cursor:pointer;">Docker Commands</h2>
+<div id="docker" style="display:none;">
+<pre>
+# Build an image
+docker build -t myimage .
+# Run a container
+docker run -d -p 8080:80 myimage
+# List containers
+docker ps -a
+</pre>
+</div>
+
+<h2 onclick="toggle('python')" style="cursor:pointer;">Python Async Patterns (3.11+)</h2>
+<div id="python" style="display:none;">
+<pre>
+import asyncio
+
+async def worker(id):
+    await asyncio.sleep(1)
+    print(f"worker {id} done")
+
+async def main():
+    await asyncio.gather(*(worker(i) for i in range(5)))
+
+asyncio.run(main())
+</pre>
+</div>
+
+<h2 onclick="toggle('systemd')" style="cursor:pointer;">Systemd Service Template</h2>
+<div id="systemd" style="display:none;">
+<pre>
+[Unit]
 Description=My Service
 After=network.target
 
@@ -35,11 +60,16 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-</code></pre>
-</section>
-</main>
-<footer>
-<p>© 2024 Rahul Work – Open source cheatsheets.</p>
-</footer>
+</pre>
+</div>
+
+<p>Support the project: <a href="https://buymeacoffee.com/rahulwork247" target="_blank">Buy Me A Coffee</a> | <a href="https://github.com/sponsors/rahulwork247" target="_blank">GitHub Sponsors</a></p>
+</div>
+<script>
+function toggle(id){
+  const el=document.getElementById(id);
+  el.style.display = el.style.display==='none' ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
