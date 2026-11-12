@@ -1,75 +1,31 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-<meta charset="UTF-8">
+<meta charset='UTF-8'>
 <title>Developer Cheatsheet Hub</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 <style>
   body {font-family: Arial, sans-serif; margin: 2rem; background:#111; color:#eee;}
-  a {color:#ff6b6b;}
-  .dark-toggle {position:fixed; top:1rem; right:1rem; cursor:pointer;}
-  .container {max-width:800px; margin:auto;}
-  h1 {color:#ff4757;}
+  h1 {color:#ff4d4d;}
+  pre {background:#222; padding:1rem; overflow:auto;}
+  .donate {margin-top:2rem; text-align:center;}
 </style>
 </head>
 <body>
-<div class="dark-toggle" onclick="document.body.classList.toggle('dark')">🌓</div>
-<div class="container">
-<h1>Developer Cheatsheet Hub</h1>
-<p>Welcome! Below are quick reference sections. Click a heading to expand.</p>
-
-<h2 onclick="toggle('docker')" style="cursor:pointer;">Docker Commands</h2>
-<div id="docker" style="display:none;">
+<h1>Docker Commands Cheat Sheet</h1>
 <pre>
-# Build an image
-docker build -t myimage .
-# Run a container
-docker run -d -p 8080:80 myimage
 # List containers
 docker ps -a
+
+# Build image
+docker build -t myimage .
+
+# Run container
+docker run -d -p 8080:80 myimage
 </pre>
+<div class='donate'>
+  <a href='https://buymeacoffee.com/rahulwork247' target='_blank'>
+    <img src='https://www.buymeacoffee.com/assets/img/guidelines/logo.svg' alt='Buy Me A Coffee' height='40'>
+  </a>
 </div>
-
-<h2 onclick="toggle('python')" style="cursor:pointer;">Python Async Patterns (3.11+)</h2>
-<div id="python" style="display:none;">
-<pre>
-import asyncio
-
-async def worker(id):
-    await asyncio.sleep(1)
-    print(f"worker {id} done")
-
-async def main():
-    await asyncio.gather(*(worker(i) for i in range(5)))
-
-asyncio.run(main())
-</pre>
-</div>
-
-<h2 onclick="toggle('systemd')" style="cursor:pointer;">Systemd Service Template</h2>
-<div id="systemd" style="display:none;">
-<pre>
-[Unit]
-Description=My Service
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/mybinary --option
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-</pre>
-</div>
-
-<p>Support the project: <a href="https://buymeacoffee.com/rahulwork247" target="_blank">Buy Me A Coffee</a> | <a href="https://github.com/sponsors/rahulwork247" target="_blank">GitHub Sponsors</a></p>
-</div>
-<script>
-function toggle(id){
-  const el=document.getElementById(id);
-  el.style.display = el.style.display==='none' ? 'block' : 'none';
-}
-</script>
 </body>
 </html>
