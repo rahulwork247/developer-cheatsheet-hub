@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Developer Cheatsheet Hub</title>
+<link rel='stylesheet' href='style.css'>
+</head>
+<body>
+<header>
+<h1>Developer Cheatsheets</h1>
+<a href='https://buymeacoffee.com/rahulwork247' target='_blank'>
+<img src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png' alt='Buy Me A Coffee' style='height:40px;'>
+</a>
+</header>
+<main>
+<section>
+<h2>Docker Compose Cheat Sheet</h2>
+<pre><code>version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+</code></pre>
+</section>
+<section>
+<h2>Linux systemd Service Example</h2>
+<pre><code>[Unit]
+Description=My Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/mybinary --option
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+</section>
+</main>
+<footer>
+<p>© 2024 Rahul Work – Open source cheatsheets.</p>
+</footer>
+</body>
+</html>
