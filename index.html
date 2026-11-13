@@ -1,31 +1,85 @@
+
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-<meta charset='UTF-8'>
+<meta charset="UTF-8">
 <title>Developer Cheatsheet Hub</title>
 <style>
-  body {font-family: Arial, sans-serif; margin: 2rem; background:#111; color:#eee;}
-  h1 {color:#ff4d4d;}
-  pre {background:#222; padding:1rem; overflow:auto;}
-  .donate {margin-top:2rem; text-align:center;}
+  body {font-family: Arial, sans-serif; margin:2rem; background:#111; color:#eee;}
+  a {color:#ff6b6b;}
+  .dark-toggle {position:fixed; top:1rem; right:1rem; cursor:pointer;}
+  .header {text-align:center; margin-bottom:2rem;}
+  .section {margin-bottom:2rem;}
 </style>
+<script>
+  const toggle = () => {
+    document.body.classList.toggle('light');
+    const bg = document.body.classList.contains('light') ? '#fff' : '#111';
+    const fg = document.body.classList.contains('light') ? '#000' : '#eee';
+    document.body.style.background = bg;
+    document.body.style.color = fg;
+  };
+</script>
 </head>
 <body>
-<h1>Docker Commands Cheat Sheet</h1>
-<pre>
-# List containers
-docker ps -a
+<div class="dark-toggle" onclick="toggle()">🌓</div>
+<div class="header">
+  <h1>Developer Cheatsheet Hub</h1>
+  <p>Quick reference for high‑search‑intent dev topics.</p>
+  <a href="https://buymeacoffee.com/rahulwork247" target="_blank">☕ Buy Me A Coffee</a>
+</div>
+<div class="section">
+  <h2>Docker Compose Cheat Sheet</h2>
+  <pre>
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - DEBUG=1
+  db:
+    image: postgres:13
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:
+  </pre>
+</div>
+<div class="section">
+  <h2>Linux systemd Service Example</h2>
+  <pre>
+[Unit]
+Description=My App Service
+After=network.target
 
-# Build image
-docker build -t myimage .
+[Service]
+ExecStart=/usr/bin/myapp --serve
+Restart=on-failure
+User=appuser
+Group=appgroup
 
-# Run container
-docker run -d -p 8080:80 myimage
-</pre>
-<div class='donate'>
-  <a href='https://buymeacoffee.com/rahulwork247' target='_blank'>
-    <img src='https://www.buymeacoffee.com/assets/img/guidelines/logo.svg' alt='Buy Me A Coffee' height='40'>
-  </a>
+[Install]
+WantedBy=multi-user.target
+  </pre>
+</div>
+<div class="section">
+  <h2>Python 3.14 Async Pattern</h2>
+  <pre>
+import asyncio
+
+async def worker(id):
+    print(f"Worker {id} starting")
+    await asyncio.sleep(1)
+    print(f"Worker {id} done")
+
+async def main():
+    await asyncio.gather(*(worker(i) for i in range(5)))
+
+if __name__ == "__main__":
+    asyncio.run(main())
+  </pre>
 </div>
 </body>
 </html>
